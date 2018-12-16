@@ -7,6 +7,7 @@ import { HomeComponent } from './home.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [HomeComponent, EditMealsDialog],
@@ -16,7 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
     CalendarModule,
     MatDialogModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ],
   entryComponents: [EditMealsDialog]
 })
