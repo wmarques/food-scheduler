@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
 
   addMeal(e) {
     this.dialog.open(EditMealsDialog, {
+      disableClose: true,
       data: {
         date: e.day.date,
         meals: e.day.events.length

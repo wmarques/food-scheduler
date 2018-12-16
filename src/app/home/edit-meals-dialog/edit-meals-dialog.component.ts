@@ -20,6 +20,7 @@ export class EditMealsDialog implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log('in');
     this.date = this.data.date;
     this.meals = { ...this.data.meals };
   }
