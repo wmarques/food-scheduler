@@ -11,6 +11,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 export class EditMealsDialog implements OnInit {
   date: Date;
   meals: any;
+  state: 'loading' | 'success';
 
   constructor(
     private afs: AngularFirestore,
@@ -20,27 +21,41 @@ export class EditMealsDialog implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('in');
     this.date = this.data.date;
-    this.meals = { ...this.data.meals };
+    this.meals = this.data.meals
+      ? { ...this.data.meals }
+      : {
+          breakfast: '',
+          lunch: '',
+          dinner: ''
+        };
   }
 
   async save() {
+    if (!this.meals.breakfast && !this.meals.lunch && !this.meals.dinner) {
+      this.dialogRef.close();
+      return;
+    }
+
+    this.state = 'loading';
     const user = this.af.auth.currentUser;
+
     if (this.data.meals) {
       await this.afs
         .collection('meals')
         .doc(this.meals.id)
         .update({
-          breakfast: this.meals.breakfast,
-          lunch: this.meals.lunch,
-          dinner: this.meals.dinner
+          breakfast: this.meals.breakfast || '',
+          lunch: this.meals.lunch || '',
+          dinner: this.meals.dinner || ''
         });
     } else {
       await this.afs
         .collection('meals')
         .add({ ...this.meals, date: this.date, userId: user.uid });
     }
+
+    this.state = 'success';
 
     this.dialogRef.close();
   }
