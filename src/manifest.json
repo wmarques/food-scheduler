@@ -1,6 +1,6 @@
 {
-  "name": "food-schedule",
-  "short_name": "food-schedule",
+  "name": "Food Agenda",
+  "short_name": "Food Agenda",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
