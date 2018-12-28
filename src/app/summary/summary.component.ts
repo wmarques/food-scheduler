@@ -12,4 +12,8 @@ export class SummaryComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  search() {
+    console.log(new Date(this.from), new Date(this.to));
+  }
 }

@@ -1,28 +1,15 @@
-<div class="search">
-  <mat-form-field class="example-full-width">
-    <input
-      matInput
-      [matDatepicker]="pickerStart"
-      placeholder="De"
-      [(ngModel)]="from"
-    />
-    <mat-datepicker-toggle
-      matSuffix
-      [for]="pickerStart"
-    ></mat-datepicker-toggle>
-    <mat-datepicker touchUi #pickerStart></mat-datepicker>
-  </mat-form-field>
+<div class="container">
+  <div class="search">
+    <mat-form-field>
+      <input type="date" matInput placeholder="Du" [(ngModel)]="from" />
+    </mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <input
-      matInput
-      [matDatepicker]="pickerTo"
-      placeholder="A"
-      [(ngModel)]="to"
-    />
-    <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
-    <mat-datepicker touchUi #pickerTo></mat-datepicker>
-  </mat-form-field>
+    <mat-form-field>
+      <input type="date" matInput placeholder="Au" [(ngModel)]="to" />
+    </mat-form-field>
 
-  <button mat-raised-button color="primary">Rechercher</button>
+    <button mat-raised-button color="primary" (click)="search()">
+      Rechercher
+    </button>
+  </div>
 </div>
