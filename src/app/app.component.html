@@ -1,3 +1,23 @@
 <mat-toolbar color="primary"> <span>Food Scheduler</span> </mat-toolbar>
+<nav mat-tab-nav-bar [backgroundColor]="'primary'">
+  <a
+    mat-tab-link
+    routerLink="home"
+    routerLinkActive
+    #rlhome="routerLinkActive"
+    [active]="rlhome.isActive"
+  >
+    Calendrier
+  </a>
+  <a
+    mat-tab-link
+    routerLink="summary"
+    routerLinkActive
+    #rllist="routerLinkActive"
+    [active]="rllist.isActive"
+  >
+    Liste
+  </a>
+</nav>
 
 <router-outlet></router-outlet>

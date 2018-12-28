@@ -14,6 +14,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { LoginModule } from './login/login.module';
+import { MatTabsModule } from '@angular/material';
+import { SummaryModule } from './summary/summary.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +24,7 @@ import { LoginModule } from './login/login.module';
     AngularFirestoreModule,
     AngularFireAuthModule,
     MatToolbarModule,
+    MatTabsModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
@@ -33,7 +36,8 @@ import { LoginModule } from './login/login.module';
       enabled: environment.production
     }),
     HomeModule,
-    LoginModule
+    LoginModule,
+    SummaryModule
   ],
   providers: [],
   bootstrap: [AppComponent]
