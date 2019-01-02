@@ -22,9 +22,11 @@
           <div class="mat-h2">
             {{ meal.date.seconds * 1000 | date: 'longDate' }}
           </div>
-          <div>Petit-déjeuner: {{ meal.breakfast }}</div>
-          <div>Déjeuner: {{ meal.lunch }}</div>
-          <div>Dîner: {{ meal.dinner }}</div>
+          <div class="lunch">
+            <strong>Petit-déjeuner:</strong> {{ meal.breakfast }}
+          </div>
+          <div class="lunch"><strong>Déjeuner:</strong> {{ meal.lunch }}</div>
+          <div class="lunch"><strong>Dîner:</strong> {{ meal.dinner }}</div>
         </mat-card-content>
       </mat-card>
     </div>
