@@ -12,4 +12,21 @@
       Rechercher
     </button>
   </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="meals">
+    <div class="meal" *ngFor="let meal of (meals$ | async)">
+      <mat-card>
+        <mat-card-content>
+          <div class="mat-h2">
+            {{ meal.date.seconds * 1000 | date: 'longDate' }}
+          </div>
+          <div>Petit-déjeuner: {{ meal.breakfast }}</div>
+          <div>Déjeuner: {{ meal.lunch }}</div>
+          <div>Dîner: {{ meal.dinner }}</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
 </div>

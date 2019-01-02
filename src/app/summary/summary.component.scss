@@ -4,9 +4,15 @@
 
 .search {
   display: flex;
-  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-bottom: 20px;
 }
 
 mat-form-field {
   margin-right: 10px;
+}
+
+.meal {
+  margin-top: 20px;
 }

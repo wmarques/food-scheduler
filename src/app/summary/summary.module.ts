@@ -7,7 +7,9 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatInputModule,
-  MatButtonModule
+  MatButtonModule,
+  MatDividerModule,
+  MatCardModule
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 
@@ -21,7 +23,9 @@ import { FormsModule } from '@angular/forms';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDividerModule,
+    MatCardModule
   ]
 })
 export class SummaryModule {}

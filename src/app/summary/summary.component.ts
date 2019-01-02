@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MealsService } from '../core/services/meals.service';
 
 @Component({
   selector: 'app-summary',
@@ -6,14 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./summary.component.scss']
 })
 export class SummaryComponent implements OnInit {
-  from: Date;
-  to: Date;
+  from: string;
+  to: string;
+  meals$: any;
 
-  constructor() {}
+  constructor(private mealsService: MealsService) {}
 
   ngOnInit() {}
 
   search() {
-    console.log(new Date(this.from), new Date(this.to));
+    this.meals$ = this.mealsService.getMeals(
+      new Date(this.from),
+      new Date(this.to)
+    );
   }
 }

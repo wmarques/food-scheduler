@@ -4,15 +4,17 @@ import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({ providedIn: 'root' })
 export class MealsService {
-  constructor(private afs: AngularFirestore, public af: AngularFireAuth) {}
+  constructor(private afs: AngularFirestore, private af: AngularFireAuth) {}
 
   getMeals(from: Date, to: Date) {
     const user = this.af.auth.currentUser;
-    this.afs
-      .collection('meals', ref => ref.where('userId', '==', user.uid))
-      .snapshotChanges()
-      .subscribe(data => {
-        console.log(data);
-      });
+    return this.afs
+      .collection('meals', ref =>
+        ref
+          .where('userId', '==', user.uid)
+          .where('date', '>=', from)
+          .where('date', '<=', to)
+      )
+      .valueChanges();
   }
 }
