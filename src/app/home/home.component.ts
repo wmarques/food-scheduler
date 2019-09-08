@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { EditMealsDialog } from './edit-meals-dialog/edit-meals-dialog.component';
 import { CalendarEvent } from 'calendar-utils';
+import { lastDayOfMonth, startOfMonth } from 'date-fns';
 
 @Component({
   selector: 'app-home',
@@ -23,8 +24,17 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     const user = this.af.auth.currentUser;
+    const today = new Date();
+    const from = startOfMonth(today);
+    const to = lastDayOfMonth(today);
+
     this.afs
-      .collection('meals', ref => ref.where('userId', '==', user.uid))
+      .collection('meals', ref =>
+        ref
+          .where('userId', '==', user.uid)
+          .where('date', '>=', from)
+          .where('date', '<=', to)
+      )
       .snapshotChanges()
       .subscribe(data => {
         this.events = data.map((change: any) => {
