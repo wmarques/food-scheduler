@@ -15,12 +15,20 @@
 
   <mat-divider></mat-divider>
 
-  <div class="meals">
-    <div class="meal" *ngFor="let meal of (meals$ | async)">
+  <div class="meals" #meals>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="download()"
+      data-html2canvas-ignore
+    >
+      Télécharger
+    </button>
+    <div class="meal" *ngFor="let meal of meals$ | async">
       <mat-card>
         <mat-card-content>
           <div class="mat-h2">
-            {{ meal.date.seconds * 1000 | date: 'longDate' }}
+            {{ meal.date.seconds * 1000 | date: "longDate" }}
           </div>
           <div class="lunch">
             <strong>Petit-déjeuner:</strong> {{ meal.breakfast }}

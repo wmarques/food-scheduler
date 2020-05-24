@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { MealsService } from '../core/services/meals.service';
-
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { MealsService } from "../core/services/meals.service";
+import html2canvas from "html2canvas";
 @Component({
-  selector: 'app-summary',
-  templateUrl: './summary.component.html',
-  styleUrls: ['./summary.component.scss']
+  selector: "app-summary",
+  templateUrl: "./summary.component.html",
+  styleUrls: ["./summary.component.scss"],
 })
 export class SummaryComponent implements OnInit {
+  @ViewChild("meals") mealsEl: ElementRef;
+
   from: string;
   to: string;
   meals$: any;
@@ -20,5 +22,15 @@ export class SummaryComponent implements OnInit {
       new Date(this.from),
       new Date(this.to)
     );
+  }
+
+  download() {
+    html2canvas(this.mealsEl.nativeElement).then((canvas) => {
+      const img = canvas.toDataURL("image/png");
+      var link = document.createElement("a");
+      link.download = "filename.png";
+      link.href = img;
+      link.click();
+    });
   }
 }
