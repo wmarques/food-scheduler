@@ -15,7 +15,7 @@ export class EditMealsDialog implements OnInit {
 
   constructor(
     private afs: AngularFirestore,
-    public af: AngularFireAuth,
+    public auth: AngularFireAuth,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<EditMealsDialog>
   ) {}
@@ -38,7 +38,7 @@ export class EditMealsDialog implements OnInit {
     }
 
     this.state = 'loading';
-    const user = this.af.auth.currentUser;
+    const user = await this.auth.currentUser;
 
     if (this.data.meals) {
       await this.afs

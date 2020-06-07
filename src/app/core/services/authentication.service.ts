@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { User, auth } from 'firebase/app';
+import {Injectable} from '@angular/core';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {auth, User} from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +8,7 @@ import { User, auth } from 'firebase/app';
 export class AuthenticationService {
   private userDetails: User = null;
 
-  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
+  constructor(private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userDetails = user;
@@ -23,14 +22,10 @@ export class AuthenticationService {
     const provider = new auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
-    return this.afAuth.auth.signInWithPopup(provider);
+    return this.afAuth.signInWithPopup(provider);
   }
 
   isLoggedIn() {
-    if (this.userDetails == null) {
-      return false;
-    } else {
-      return true;
-    }
+    return this.userDetails != null;
   }
 }
