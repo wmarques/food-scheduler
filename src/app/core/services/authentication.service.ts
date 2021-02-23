@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {auth, User} from 'firebase/app';
+import  firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private userDetails: User = null;
+  private userDetails: firebase.User = null;
 
   constructor(private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
@@ -19,7 +19,7 @@ export class AuthenticationService {
   }
 
   doGoogleLogin() {
-    const provider = new auth.GoogleAuthProvider();
+    const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
     return this.afAuth.signInWithPopup(provider);
