@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFireAuth} from '@angular/fire/compat/auth';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {MatDialog} from '@angular/material/dialog';
 import {EditMealsDialog} from './edit-meals-dialog/edit-meals-dialog.component';
 import {CalendarEvent} from 'calendar-utils';

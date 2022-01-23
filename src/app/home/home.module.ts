@@ -11,17 +11,16 @@ import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [HomeComponent, EditMealsDialog],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    CalendarModule,
-    MatDialogModule,
-    MatInputModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    FormsModule
-  ],
-  entryComponents: [EditMealsDialog]
+    declarations: [HomeComponent, EditMealsDialog],
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        CalendarModule,
+        MatDialogModule,
+        MatInputModule,
+        MatButtonModule,
+        MatProgressSpinnerModule,
+        FormsModule
+    ]
 })
 export class HomeModule {}
