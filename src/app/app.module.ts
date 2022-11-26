@@ -14,7 +14,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { LoginModule } from './login/login.module';
-import { MatTabsModule } from '@angular/material/tabs';
+import {  MatTabsModule } from '@angular/material/tabs';
 import { SummaryModule } from './summary/summary.module';
 
 @NgModule({

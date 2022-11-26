@@ -2,16 +2,20 @@
 
 <div mat-dialog-content>
   <mat-form-field class="full-width">
+    <mat-label>Matin</mat-label>
     <textarea
       matInput
-      placeholder="Matin"
       [(ngModel)]="meals.breakfast"
     ></textarea>
   </mat-form-field>
   <mat-form-field class="full-width">
+    <mat-label>Midi</mat-label>
+
     <textarea matInput placeholder="Midi" [(ngModel)]="meals.lunch"></textarea>
   </mat-form-field>
   <mat-form-field class="full-width">
+    <mat-label>Soir</mat-label>
+
     <textarea matInput placeholder="Soir" [(ngModel)]="meals.dinner"></textarea>
   </mat-form-field>
 </div>
