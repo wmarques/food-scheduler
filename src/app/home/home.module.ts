@@ -9,18 +9,20 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
     declarations: [HomeComponent, EditMealsDialog],
-    imports: [
-        CommonModule,
-        HomeRoutingModule,
-        CalendarModule,
-        MatDialogModule,
-        MatInputModule,
-        MatButtonModule,
-        MatProgressSpinnerModule,
-        FormsModule
-    ]
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    CalendarModule,
+    MatDialogModule,
+    MatInputModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    FormsModule,
+    MatIconModule
+  ]
 })
 export class HomeModule {}

@@ -4,7 +4,10 @@ import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {MatDialog} from '@angular/material/dialog';
 import {EditMealsDialog} from './edit-meals-dialog/edit-meals-dialog.component';
 import {CalendarEvent} from 'calendar-utils';
-import {lastDayOfMonth, startOfMonth} from 'date-fns';
+import {addMonths, endOfMonth, format, lastDayOfMonth, startOfMonth, subMonths} from 'date-fns';
+import firebase from 'firebase/compat';
+import User = firebase.User;
+import {fr} from 'date-fns/locale';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +15,9 @@ import {lastDayOfMonth, startOfMonth} from 'date-fns';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  viewDate = new Date();
   events: CalendarEvent[] = [];
+  currentMonth = startOfMonth(new Date());
+  private user: firebase.User;
 
   constructor(
     public dialog: MatDialog,
@@ -22,17 +26,18 @@ export class HomeComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    const user = await this.af.currentUser;
-    const today = new Date();
-    const from = startOfMonth(today);
-    const to = lastDayOfMonth(today);
+    this.user = await this.af.currentUser;
 
+    this.fetchData();
+  }
+
+  private fetchData() {
     this.afs
       .collection('meals', (ref) =>
         ref
-          .where('userId', '==', user.uid)
-          .where('date', '>=', from)
-          .where('date', '<=', to)
+          .where('userId', '==', this.user.uid)
+          .where('date', '>=', this.currentMonth)
+          .where('date', '<=', endOfMonth(this.currentMonth))
       )
       .snapshotChanges()
       .subscribe((data) => {
@@ -58,5 +63,20 @@ export class HomeComponent implements OnInit {
           : null,
       },
     });
+  }
+
+  formatMonth() {
+    return format(this.currentMonth, 'MMM y', {locale:fr});
+  }
+
+  previousMonth() {
+    this.currentMonth = subMonths(this.currentMonth, 1);
+    this.fetchData();
+  }
+
+  nextMonth() {
+    this.currentMonth = addMonths(this.currentMonth, 1);
+    this.fetchData();
+
   }
 }

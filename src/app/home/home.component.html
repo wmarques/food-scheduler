@@ -1,5 +1,11 @@
+<div class="flex justify-between items-center my-4">
+  <button  mat-icon-button color="primary" (click)="previousMonth()"><mat-icon>arrow_back</mat-icon></button>
+  {{formatMonth()}}
+  <button  mat-icon-button color="primary" (click)="nextMonth()"><mat-icon>arrow_forward</mat-icon></button>
+</div>
+
 <mwl-calendar-month-view
-  [viewDate]="viewDate"
+  [viewDate]="currentMonth"
   [events]="events"
   locale="fr"
   weekStartsOn="1"
